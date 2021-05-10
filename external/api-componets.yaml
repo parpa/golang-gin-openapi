@@ -1,0 +1,70 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Covid19 Leader API Components
+paths: {}
+
+components:
+  schemas:
+    HealthCheckModel:
+      title: Health Check Response
+      description: ""
+      type: object
+      required:
+        - result
+      properties:
+        result:
+          type: string
+          example: success
+
+    ErrorModel:
+      title: Error Response
+      description: ""
+      type: object
+      properties:
+        reasonCode:
+          type: string
+          example: 3389
+        reasonDetailMessage:
+          type: string
+
+    ErrorsModel:
+      allOf: # Combines the ErrResponse and the inline model
+        - $ref: "#/components/schemas/ErrorModel"
+        - type: object
+          properties:
+            formCheck:
+              type: array
+              items:
+                $ref: "#/components/schemas/ErrorsItemModel"
+
+    ErrorsItemModel:
+      type: object
+      required:
+        - code
+        - fields
+        - message
+      properties:
+        code:
+          type: string
+          example: 1234
+        fields:
+          type: array
+          items:
+            type: string
+            example: userid
+        message:
+          type: string
+          example: user not found
+
+    MigrationModel:
+      type: object
+      required:
+        - res
+        - during
+      properties:
+        res:
+          type: boolean
+        during:
+          type: string
+          example: 3s
