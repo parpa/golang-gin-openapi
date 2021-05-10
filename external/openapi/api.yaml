@@ -1,0 +1,61 @@
+openapi: 3.0.0
+servers:
+  - url: "http://localhost:8080/"
+info:
+  description: >-
+    Here is golang-gin-openapi API project.
+
+  version: 1.0.0
+  title: Golang Gin Openapi API
+tags:
+  - name: health
+    description: health API
+  - name: migration
+    description: migration API
+paths:
+  "/healthz":
+    get:
+      tags:
+        - health
+      summary: health API
+      operationId: health
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "./api-componets.yaml#/components/schemas/HealthCheckModel"
+
+  "/migration/up":
+    patch:
+      tags:
+        - migration
+      summary: migration up
+      description: ""
+      operationId: migrationUp
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                safe_code:
+                  type: string
+              required:
+                - safe_code
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "./api-componets.yaml#/components/schemas/MigrationModel"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "./api-componets.yaml#/components/schemas/ErrorModel"
+        "500":
+          description: サーバ不正時のレスポンス
