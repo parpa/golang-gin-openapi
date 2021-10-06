@@ -1,0 +1,16 @@
+version: "3"
+
+services:
+  server-generator:
+    image: openapitools/openapi-generator-cli
+    command: generate -i /openapi/api.yaml -g go-gin-server -o /out/ -c /openapi/api-server-config.json
+    volumes:
+      - ./external:/openapi
+      - ./:/out
+
+  # client-generator:
+  #   image: openapitools/openapi-generator-cli
+  #   command: generate -i /openapi/api.yaml -g go -o /out/test/client -c /openapi/api-client-config.json
+  #   volumes:
+  #     - ./external:/openapi
+  #     - ./:/out
