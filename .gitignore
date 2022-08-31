@@ -15,6 +15,5 @@
 vendor/
 
 .DS_Store
-tmp
-api
-.openapi-generator
+.tmp
+.dist

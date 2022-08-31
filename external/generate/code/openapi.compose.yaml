@@ -1,0 +1,19 @@
+version: "3"
+
+services:
+  server-generator:
+    image: generate-server:latest
+    build:
+      context: server
+    # command: generate -i /openapi/api.yaml -g go-gin-server -o /out --additional-properties="packageName=renameme"
+    volumes:
+      - ../../openapi:/openapi
+      - ./server/mustache:/mustache
+      - ./.dist/server:/out
+
+  client-generator:
+    image: openapitools/openapi-generator-cli
+    command: generate -i /openapi/api.yaml -g go -o /out --additional-properties="packageName=client"
+    volumes:
+      - ../../openapi:/openapi
+      - ./.dist/client:/out

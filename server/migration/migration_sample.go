@@ -3,7 +3,7 @@ package migration
 import (
 	"context"
 
-	infra "github.com/parpa/golang-gin-openapi/infrastructure"
+	infra "github.com/parpa/golang-gin-openapi/server/infrastructure"
 )
 
 type migration_1619844594826 struct {
