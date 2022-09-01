@@ -5,7 +5,7 @@ import (
 	"sort"
 	"time"
 
-	infra "github.com/parpa/golang-gin-openapi/infrastructure"
+	infra "github.com/parpa/golang-gin-openapi/server/infrastructure"
 )
 
 type migrationInterface interface {

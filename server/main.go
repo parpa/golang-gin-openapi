@@ -6,8 +6,8 @@ import (
 	"net/http"
 	"time"
 
-	infra "github.com/parpa/golang-gin-openapi/infrastructure"
-	sw "github.com/parpa/golang-gin-openapi/server"
+	infra "github.com/parpa/golang-gin-openapi/server/infrastructure"
+	sw "github.com/parpa/golang-gin-openapi/server/service/router"
 )
 
 func main() {
@@ -15,10 +15,7 @@ func main() {
 	infra.Init()
 
 	serverPort := infra.Getenv("SERVER_PORT", "8080")
-	log.Printf("[server] Server started on port %s", serverPort)
-
 	router := sw.NewRouter()
-
 	srv := &http.Server{
 		Addr:    ":" + serverPort,
 		Handler: router,
@@ -26,6 +23,7 @@ func main() {
 
 	go func() {
 		// service connections
+		log.Printf("[server] Server started on port %s", serverPort)
 		if err := srv.ListenAndServe(); err != nil && err != http.ErrServerClosed {
 			log.Fatalf("[server] listen: %s\n", err)
 		}

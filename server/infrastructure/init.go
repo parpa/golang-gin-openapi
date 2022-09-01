@@ -1,7 +1,7 @@
 package infrastructure
 
 import (
-	lg "github.com/parpa/golang-gin-openapi/logger"
+	lg "github.com/parpa/golang-gin-openapi/server/logger"
 	"go.uber.org/zap"
 )
 
