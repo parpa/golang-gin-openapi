@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   version: 1.0.0
-  title: Covid19 Leader API Components
+  title: API Components
 paths: {}
 
 components:
