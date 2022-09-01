@@ -59,7 +59,7 @@ var routes = Routes{
 	{
 		"Health",
 		http.MethodGet,
-		"/health",
+		"/healthz",
 		controller.Health,
 	},
 

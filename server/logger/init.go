@@ -17,16 +17,12 @@ func Init() *zap.Logger {
 	switch os.Getenv("LOG_LEVEL") {
 	case "info":
 		logLevel = zap.InfoLevel
-		break
 	case "debug":
 		logLevel = zap.DebugLevel
-		break
 	case "warn":
 		logLevel = zap.WarnLevel
-		break
 	case "error":
 		logLevel = zap.ErrorLevel
-		break
 	}
 
 	encoderCfg := zap.NewProductionEncoderConfig()
@@ -36,9 +32,9 @@ func Init() *zap.Logger {
 	// lock it.
 	w := zapcore.AddSync(&lumberjack.Logger{
 		Filename:   loggerFileName,
-		MaxSize:    100, // megabytes
+		MaxSize:    5, // megabytes
 		MaxBackups: 3,
-		MaxAge:     28, // days
+		MaxAge:     15, // days
 	})
 	swSugar := zapcore.NewMultiWriteSyncer(zapcore.AddSync(os.Stdout), w)
 	core := zapcore.NewCore(

@@ -13,7 +13,7 @@ tags:
   - name: migration
     description: migration API
 paths:
-  "/health":
+  "/healthz":
     get:
       tags:
         - health
