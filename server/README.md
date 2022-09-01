@@ -4,7 +4,7 @@
 
 ```sh
 # start
-sh start.sh
+sh script/start.sh
 ```
 
 ## Docker start
